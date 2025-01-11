@@ -1,4 +1,6 @@
-export const headerData = [
+import { HeaderData } from "@/types";
+
+export const headerData: HeaderData[] = [
   { title: "Home", href: "/" },
   { title: "Men", href: "/men-s-fashion" },
   { title: "Women", href: "/woman" },

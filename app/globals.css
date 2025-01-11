@@ -67,3 +67,13 @@
     @apply transition-all ease-in-out duration-300;
   }
 }
+
+/* Our font */
+
+:root {
+  --font-raleway: "raleway", sans-serif;
+}
+
+.body {
+  font-family: var(--font-raleway);
+}

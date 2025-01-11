@@ -3,7 +3,7 @@ import Title from "./Title";
 
 const HomeBanner = () => {
   return (
-    <div className="flex flex-col justify-center items-center` gap-5">
+    <div className="flex flex-col justify-center items-center gap-5">
       <Title className="text-3xl md:text-4xl uppercase font-bold text-center">
         Best Clothing Collection
       </Title>
