@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import HomeTabbar from "../HomeTabbar";
 import { productTypes } from "@/constants";
-
+import { AnimatePresence, motion } from "motion/react";
 import { Product } from "@/sanity.types";
 import ProductList from "./ProductList";
 import NoProductsAvailable from "./NoProductsAvailable";
@@ -40,7 +40,16 @@ const ProductGrid = () => {
       ) : (
         <>
           {products.length ? (
-            <ProductList products={products} />
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0.2 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0.2 }}
+                transition={{ duration: 0.5 }}
+              >
+                <ProductList products={products} />
+              </motion.div>
+            </AnimatePresence>
           ) : (
             <NoProductsAvailable selectedTab={selectedTab} />
           )}
