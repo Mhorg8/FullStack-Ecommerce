@@ -68,6 +68,12 @@
   }
 }
 
+@layer components {
+  .product__features {
+    @apply flex items-center text-sm gap-2 text-black hover:text-red-600 hoverEffect cursor-pointer;
+  }
+}
+
 /* Our font */
 
 :root {

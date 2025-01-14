@@ -14,7 +14,7 @@ const AddToCardButton = ({ product, className }: Props) => {
   const itemCount = 0;
 
   return (
-    <div>
+    <div className="w-full">
       {itemCount ? (
         <div className="w-full text-sm">
           <div className="flex items-center justify-between">
