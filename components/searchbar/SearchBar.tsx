@@ -10,9 +10,9 @@ import {
 } from "../ui/dialog";
 import { Product } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
-import SearchResultMessage from "../searchbar/SearchResultMessage";
-import SearchLoader from "../searchbar/SearchLoader";
-import SearchInput from "../searchbar/SearchInput";
+import SearchResultMessage from "./SearchResultMessage";
+import SearchLoader from "./SearchLoader";
+import SearchInput from "./SearchInput";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
@@ -88,7 +88,7 @@ const SearchBar = () => {
                     <div className="flex items-center p-1">
                       <Link
                         href={`/product/${product.slug?.current}`}
-                        className="h-20 w-20 md:h-24 md:w-24 flex-shrink-0 border border-darkColor/20 rounded-md group"
+                        className="h-20 w-20 md:h-24 md:w-24 flex-shrink-0 border border-darkColor/20 rounded-md group overflow-hidden"
                         onClick={() => setShowSearch(false)}
                       >
                         {product.images && (

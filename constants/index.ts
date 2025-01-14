@@ -34,3 +34,26 @@ export const categoriesData: footerLink[] = [
   { title: "Accessories", href: "/accessories" },
   { title: "Others", href: "/others" },
 ];
+
+export const faqsData = [
+  {
+    question: "What services does Tulus offer ?",
+    answer:
+      "Lorem ipsum odor amet, consectetuer adipiscing elit. Vivamus nullam porttitor interdum class penatibus orci",
+  },
+  {
+    question: "How can i get support for Tulus products ?",
+    answer:
+      "Suscipit taciti risus vitae suspendisse praesent habitant. Nostra metus ",
+  },
+  {
+    question: "Does Tulus offer training for its products ?",
+    answer:
+      "Amet nec amet dui porttitor; convallis non inceptos integer. Leo lobortis neque ",
+  },
+  {
+    question: "What industries does Tulus serve ?",
+    answer:
+      "Suscipit gravida tortor in quam platea. Mus ex ante nostra aptent aliquam neque. Dui accumsan sapien maecenas, praesent scelerisque fermentum. Ligula luctus dis penatibus; auctor vel elementum gravida. Vivamus facilisis mi vestibulum, bibendum consectetur vehicula class.",
+  },
+];
