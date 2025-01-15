@@ -42,6 +42,7 @@ const ProductGrid = () => {
           {products.length ? (
             <AnimatePresence>
               <motion.div
+                className="py-10"
                 initial={{ opacity: 0.2 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0.2 }}

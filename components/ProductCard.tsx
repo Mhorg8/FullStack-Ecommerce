@@ -38,7 +38,7 @@ const ProductCard = ({ product }: Props) => {
       </div>
       <div className="py-3 px-2 flex flex-col gap-1.5 bg-zinc-50 border border-t-0 rounded-lg rounded-tr-none rounded-tl-none ">
         <h2 className="font-semibold line-clamp-1">{product.name}</h2>
-        <p className="text-sm text-gray-800">{product.intro}</p>
+        <p className="text-sm text-gray-800 line-clamp-2">{product.intro}</p>
         <PriceView
           className="text-lg"
           price={product.price}
