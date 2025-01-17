@@ -8,17 +8,16 @@ import { Button } from "@/components/ui/button";
 import userCartStore from "@/store";
 import { useAuth, useUser } from "@clerk/nextjs";
 import { ShoppingBagIcon } from "lucide-react";
+
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
+import CartItemsSummary from "@/components/cart/CartItemsSummary";
 
 const CartPage = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const { isSignedIn } = useAuth();
   const {
-    deleteCartProduct,
-    getTotalPrice,
-    getItemCount,
-    getSubTotalPrice,
     resetCart,
     getGroupedItems,
   } = userCartStore();
@@ -67,13 +66,7 @@ const CartPage = () => {
                   </Button>
                 </div>
                 {/* summary */}
-                <div className="lg:col-span-1">
-                  <div className="hidden md:inline-block w-full bg-white p-6 rounded-lg border">
-                    <h2 className="text-xl font-semibold mb-4">
-                      Order Summary
-                    </h2>
-                  </div>
-                </div>
+              <CartItemsSummary />
               </div>
             </>
           ) : (

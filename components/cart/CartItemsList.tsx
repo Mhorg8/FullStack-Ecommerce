@@ -8,7 +8,7 @@ const CartItemsList = () => {
   const cartProducts = getGroupedItems();
 
   return (
-    <div className="border bg-white rounded-md">
+    <div className="border min-h-fit bg-white rounded-md ">
       {cartProducts.map(({ product }) => (
         // product
         <CartItem product={product} key={product._id} />

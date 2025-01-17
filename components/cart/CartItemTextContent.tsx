@@ -5,7 +5,9 @@ const CartItemTextContent = ({ product }: { product: Product }) => {
   return (
     <div className="space-y-1.5">
       <h2 className="font-semibold line-clamp-1">{product.name}</h2>
-      <p className="text-sm text-lightColor font-medium">{product.intro}</p>
+      <p className="text-sm text-lightColor font-medium line-clamp-1 md:line-clamp-2">
+        {product.intro}
+      </p>
       <p className="text-sm capitalize">
         Variant: <span className="font-semibold">{product.variant}</span>
       </p>

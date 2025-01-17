@@ -12,7 +12,7 @@ const CartItem = ({ product }: { product: Product }) => {
 
   return (
     <div
-      className="border-b p-2.5 last:border-b-0 flex items-center justify-between gap-5"
+      className="border-b  p-2.5 last:border-b-0 flex items-center justify-between gap-10 h-full"
       key={product._id}
     >
       <div className="flex flex-1 items-center gap-2 h-36 md:h-44 relative">
