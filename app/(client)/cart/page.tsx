@@ -1,11 +1,15 @@
 "use client";
 import Container from "@/components/Container";
 import Loading from "@/components/Loading";
+import CartItemsList from "@/components/cart/CartItemsList";
 import EmptyCart from "@/components/cart/EmptyCart";
 import NotAccessToCart from "@/components/cart/NotAccessToCart";
+import { Button } from "@/components/ui/button";
 import userCartStore from "@/store";
 import { useAuth, useUser } from "@clerk/nextjs";
+import { ShoppingBagIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const CartPage = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -31,11 +35,50 @@ const CartPage = () => {
 
   const cartProducts = getGroupedItems();
 
+  const handleReset = () => {
+    const confirmed = window.confirm("Are you sure to reset your cart !?");
+
+    if (confirmed) {
+      resetCart();
+      toast.success("Your cart reset successfully");
+    }
+  };
+
   return (
-    <div>
+    <div className="bg-gray-50 pb-52 md:pb-10">
       {isSignedIn ? (
-        <Container>
-          {cartProducts?.length ? <p>sad</p> : <EmptyCart />}
+        <Container className="">
+          {cartProducts?.length ? (
+            <>
+              <div className="flex items-center gap-2 py-5">
+                <ShoppingBagIcon className="" />
+                <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+              </div>
+              <div className="grid lg:grid-cols-3 md:gap-8">
+                {/* products */}
+                <div className="lg:col-span-2 rounded-lg">
+                  <CartItemsList />
+                  <Button
+                    onClick={handleReset}
+                    className="mt-5 font-semibold"
+                    variant="destructive"
+                  >
+                    Reset Cart
+                  </Button>
+                </div>
+                {/* summary */}
+                <div className="lg:col-span-1">
+                  <div className="hidden md:inline-block w-full bg-white p-6 rounded-lg border">
+                    <h2 className="text-xl font-semibold mb-4">
+                      Order Summary
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <EmptyCart />
+          )}
         </Container>
       ) : (
         <NotAccessToCart />
