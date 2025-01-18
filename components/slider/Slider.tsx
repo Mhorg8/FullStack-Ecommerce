@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
 import ProductCard from "../ProductCard";
-import Loading from "../Loading";
+import ProductLoading from "../productGrid/ProductLoading";
 
 interface Props {
   title: string;
@@ -19,6 +19,7 @@ const Slider = ({ title }: Props) => {
 
   useEffect(() => {
     const res = async () => {
+      setIsLoading(true);
       try {
         const data = await client.fetch(query);
         if (data) {
@@ -40,34 +41,37 @@ const Slider = ({ title }: Props) => {
         {title}
       </h2>
 
-      {isLoading && !products && <Loading />}
-      <div className="mt-10 py-10 ">
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={1}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 40,
-            },
-          }}
-          className=""
-        >
-          {products.map((product) => (
-            <SwiperSlide key={product._id}>
-              <ProductCard className="shadow-lg mb-10 " product={product} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      {isLoading ? (
+        <ProductLoading />
+      ) : (
+        <div className="mt-10 py-10 ">
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+            }}
+            className=""
+          >
+            {products.map((product) => (
+              <SwiperSlide key={product._id}>
+                <ProductCard className="shadow-lg mb-10 " product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
     </Container>
   );
 };

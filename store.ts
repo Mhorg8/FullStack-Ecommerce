@@ -94,4 +94,35 @@ const userCartStore = create<CartState>()(
   )
 );
 
+interface WishlistState {
+  items: Product[];
+  addItemToFavorite: (productId: Product) => void;
+  deleteItemFromFavorite: (productId: string) => void;
+  getFavoriteItems: () => Product[];
+}
+
+export const userWhishListStore = create<WishlistState>()(
+  persist(
+    (set, get) => ({
+      items: [],
+      addItemToFavorite: (product) =>
+        set((state) => {
+          const isExist = state.items.find((item) => item._id === product._id);
+
+          if (isExist) {
+            return { items: [...state.items] };
+          } else {
+            return { items: [...state.items, product] };
+          }
+        }),
+      deleteItemFromFavorite: (productId) =>
+        set((state) => ({
+          items: state.items.filter((product) => product._id !== productId),
+        })),
+      getFavoriteItems: () => get().items,
+    }),
+    { name: "whishList-store" }
+  )
+);
+
 export default userCartStore;

@@ -6,6 +6,9 @@ import React from "react";
 import PriceView from "./PriceView";
 import AddToCardButton from "./AddToCardButton";
 import { cn } from "@/lib/utils";
+import { Suspense } from "react";
+import Loading from "./Loading";
+import WhishListActions from "./whishlist/WhishListActions";
 
 interface Props {
   product: Product;
@@ -17,17 +20,30 @@ const ProductCard = ({ product, className }: Props) => {
     <div className={cn("group rounded-lg overflow-hidden ", className)}>
       <div className="bg-gradient-to-r from-zinc-200 via-zinc-300 to-zinc-200 overflow-hidden relative">
         {product?.images && (
-          <Link href={`/product/${product.slug?.current}`}>
-            <Image
-              alt={product.name || ""}
-              src={urlFor(product.images[0]).url()}
-              width={500}
-              height={500}
-              priority
-              className={`w-full h-72 object-contain overflow-hidden group-hover:scale-105 hoverEffect 
-               ${product.stock === 0 ? "opacity-30" : "group-hover:scale-105"}`}
-            />
-          </Link>
+          <Suspense
+            fallback={
+              <div className="h-72 w-full bg-gradient-to-r from-zinc-200 via-zinc-300 to-zinc-200">
+                <Loading />
+              </div>
+            }
+          >
+            <div className="relative group">
+              <div className="hidden group-hover:block absolute top-3 right-3 z-20">
+                <WhishListActions product={product} />
+              </div>
+              <Link href={`/product/${product.slug?.current}`}>
+                <Image
+                  alt={product.name || ""}
+                  src={urlFor(product.images[0]).url()}
+                  width={500}
+                  height={500}
+                  priority
+                  className={`w-full h-72 object-contain overflow-hidden group-hover:scale-105 hoverEffect 
+                ${product.stock === 0 ? "opacity-30" : "group-hover:scale-105"}`}
+                />
+              </Link>
+            </div>
+          </Suspense>
         )}
 
         {product.stock === 0 && (
@@ -40,7 +56,7 @@ const ProductCard = ({ product, className }: Props) => {
       </div>
       <div className="py-3 px-2 flex flex-col gap-1.5 bg-zinc-50 border border-t-0 rounded-lg rounded-tr-none rounded-tl-none ">
         <h2 className="font-semibold line-clamp-1">{product.name}</h2>
-        <p className="text-sm text-gray-800 line-clamp-2">{product.intro}</p>
+        <p className="text-sm text-gray-800 line-clamp-1">{product.intro}</p>
         <PriceView
           className="text-lg"
           price={product.price}

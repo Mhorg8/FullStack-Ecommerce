@@ -13,11 +13,7 @@ import { client } from "@/sanity/lib/client";
 import SearchResultMessage from "./SearchResultMessage";
 import SearchLoader from "./SearchLoader";
 import SearchInput from "./SearchInput";
-import Image from "next/image";
-import Link from "next/link";
-import { urlFor } from "@/sanity/lib/image";
-import PriceView from "../PriceView";
-import AddToCardButton from "../AddToCardButton";
+import SearchbarItem from "./SearchbarItem";
 
 const SearchBar = () => {
   const [search, setSearch] = useState<string>("");
@@ -81,52 +77,11 @@ const SearchBar = () => {
               // showing result of search
               <div>
                 {products.map((product) => (
-                  <div
+                  <SearchbarItem
                     key={product._id}
-                    className="bg-white overflow-hidden border-b last:border-b-0"
-                  >
-                    <div className="flex items-center p-1">
-                      <Link
-                        href={`/product/${product.slug?.current}`}
-                        className="h-20 w-20 md:h-24 md:w-24 flex-shrink-0 border border-darkColor/20 rounded-md group overflow-hidden"
-                        onClick={() => setShowSearch(false)}
-                      >
-                        {product.images && (
-                          <Image
-                            src={urlFor(product.images[0]).url()}
-                            alt={product.name || ""}
-                            width={200}
-                            height={200}
-                            loading="eager"
-                            className="object-cover w-full h-full group-hover:scale-110 hoverEffect"
-                          />
-                        )}
-                      </Link>
-                      {/* description */}
-                      <div className="px-4 py-2 flex-grow">
-                        <Link
-                          href={`/product/${product.slug?.current}`}
-                          onClick={() => setShowSearch(false)}
-                        >
-                          <h3 className="text-sm md:text-lg font-semibold text-gray-800 line-clamp-1">
-                            {product.name}
-                          </h3>
-                          <p className="text-sm text-gray-600 line-clamp-1">
-                            {product.intro}
-                          </p>
-                        </Link>
-
-                        <PriceView
-                          price={product.price}
-                          discount={product.discount}
-                          className="md:text-lg"
-                        />
-                      </div>
-                      <div className="w-60 mt-1">
-                        <AddToCardButton product={product} />
-                      </div>
-                    </div>
-                  </div>
+                    product={product}
+                    setShowResult={setShowSearch}
+                  />
                 ))}
               </div>
             ) : (

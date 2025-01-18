@@ -7,9 +7,8 @@ import SearchBar from "../searchbar/SearchBar";
 import CartIcon from "./CartIcon";
 import { currentUser } from "@clerk/nextjs/server";
 import { ClerkLoaded, SignedIn, SignInButton, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
-import { ListOrdered } from "lucide-react";
 import { getAllCategories } from "@/sanity/lib/helpers/query";
+import WhishlistIcon from "./WhishlistIcon";
 
 const Header = async () => {
   const user = await currentUser();
@@ -30,13 +29,8 @@ const Header = async () => {
           <CartIcon />
 
           <ClerkLoaded>
+            <WhishlistIcon />
             <SignedIn>
-              <Link href={"/orders"} className="group relative">
-                <ListOrdered className="h-5 w-5 group-hover:text-darkColor hoverEffect" />
-                <span className="absolute -top-1 -right-1 bg-darkColor text-white h-3.5 w-3.5 rounded-full text-xs font-semibold flex items-center justify-center">
-                  0
-                </span>
-              </Link>
               <UserButton />
             </SignedIn>
 
