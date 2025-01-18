@@ -5,14 +5,16 @@ import Link from "next/link";
 import React from "react";
 import PriceView from "./PriceView";
 import AddToCardButton from "./AddToCardButton";
+import { cn } from "@/lib/utils";
 
 interface Props {
   product: Product;
+  className?: string;
 }
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product, className }: Props) => {
   return (
-    <div className="group rounded-lg overflow-hidden ">
+    <div className={cn("group rounded-lg overflow-hidden ", className)}>
       <div className="bg-gradient-to-r from-zinc-200 via-zinc-300 to-zinc-200 overflow-hidden relative">
         {product?.images && (
           <Link href={`/product/${product.slug?.current}`}>

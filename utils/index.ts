@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 
 export const fetchData = async (
   params: {
-    variant: string;
+    variant?: string;
   },
   query: string,
   setLoading: (status: boolean) => void
